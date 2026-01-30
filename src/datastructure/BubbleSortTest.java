@@ -6,6 +6,11 @@ import java.util.Arrays;
  * two nested loop to compare and swap each element to right most
  * if (arr[i] < arr[i + 1]) { //Descending
  * if (arr[i] > arr[i + 1]) { //Ascending
+ * <p>
+ * Since each iteration sort 1 element at keep at the end of the array we can reduce iteration from last,which is already sorted
+ * i < (arr.length - 1 - j);
+ * since 0 th index is unsorted we should always recheck from 0th element
+ * NOTE: keeping i=j won't work as i will increase on each iteration and we ll skip 0th unsorted element
  */
 //TODO optimize sorting using break
 public class BubbleSortTest {
@@ -13,7 +18,7 @@ public class BubbleSortTest {
     public static int[] sortArrayUsingBubbleSort(int[] arr) {
 
         for (int j = 0; j < arr.length; j++) {
-            for (int i = 0; i < arr.length - 1; i++) {
+            for (int i = 0; i < (arr.length - 1 - j); i++) {
                 if (arr[i] > arr[i + 1]) {
                     int temp = arr[i];
                     arr[i] = arr[i + 1];
@@ -28,7 +33,7 @@ public class BubbleSortTest {
     public static int[] sortArrayUsingBubbleSortDescending(int[] arr) {
 
         for (int j = 0; j < arr.length; j++) {
-            for (int i = 0; i < arr.length - 1; i++) {
+            for (int i = 0; i < (arr.length - 1 - j); i++) {
                 if (arr[i] < arr[i + 1]) {
                     int temp = arr[i];
                     arr[i] = arr[i + 1];
